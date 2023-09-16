@@ -62,3 +62,5 @@ my first commit
 exit and save (`esc + :wq`).
 
 Verify the edited commit message with `git log --oneline`.
+
+Back to [Table of Contents](../README.md#table-of-contents)

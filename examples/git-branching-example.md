@@ -308,3 +308,5 @@ git graph --oneline --graph --all
 ```
 
 We can see that `feat-b` was merged to main and our message states that the conflict was solved.
+
+Back to [Table of Contents](../README.md#table-of-contents)

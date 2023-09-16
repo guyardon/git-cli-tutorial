@@ -147,3 +147,5 @@ bf708cc adding text to README.md
 ```
 
 Great! At this stage, `git status` will notify us that there are no changes as expected.
+
+Back to [Table of Contents](../README.md#table-of-contents)

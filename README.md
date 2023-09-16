@@ -23,29 +23,28 @@ It is incredibly important for anybody working on a team, but also beneficial fo
 - [Introduction](#introduction)
 - [Table of Contents](#table-of-contents)
 - [General Commands](#general-commands)
-- [Git Commands](#git-commands)
-  - [Basics](#basics)
-    - [Initializing a repository](#initializing-a-repository)
-    - [Example: Initializing a git repository](#example-initializing-a-git-repository)
-  - [Staging and Committing Changes](#staging-and-committing-changes)
-    - [Staging / Restoring Changes](#staging--restoring-changes)
-    - [Commiting Changes](#commiting-changes)
-    - [Logging History](#logging-history)
-    - [Example: Staging and Committing Changes](#example-staging-and-committing-changes)
-  - [Working with Branches](#working-with-branches)
-    - [Branching](#branching)
-    - [Merging Branches](#merging-branches)
-    - [Comparing Changes](#comparing-changes)
-    - [Example: Working with Branches](#example-working-with-branches)
-  - [Rewriting History](#rewriting-history)
-    - [Ammending History](#ammending-history)
-    - [Editing Commit Messages](#editing-commit-messages)
-    - [Example: Editting a Commit Message](#example-editting-a-commit-message)
-    - [Deleting a commit](#deleting-a-commit)
-    - [Reordering commits](#reordering-commits)
-    - [Squashing Commits](#squashing-commits)
-    - [Example: Squashing Commits](#example-squashing-commits)
-    - [Splitting commits](#splitting-commits)
+- [Git Basics](#git-basics)
+  - [Initializing a repository](#initializing-a-repository)
+  - [Example: Initializing a git repository](#example-initializing-a-git-repository)
+- [Staging and Committing Changes](#staging-and-committing-changes)
+  - [Staging / Restoring Changes](#staging--restoring-changes)
+  - [Commiting Changes](#commiting-changes)
+  - [Logging History](#logging-history)
+  - [Example: Staging and Committing Changes](#example-staging-and-committing-changes)
+- [Working with Branches](#working-with-branches)
+  - [Branching](#branching)
+  - [Merging Branches](#merging-branches)
+  - [Comparing Changes](#comparing-changes)
+  - [Example: Working with Branches](#example-working-with-branches)
+- [Rewriting History](#rewriting-history)
+  - [Ammending History](#ammending-history)
+  - [Editing Commit Messages](#editing-commit-messages)
+  - [Example: Editting a Commit Message](#example-editting-a-commit-message)
+  - [Deleting a commit](#deleting-a-commit)
+  - [Reordering commits](#reordering-commits)
+  - [Squashing Commits](#squashing-commits)
+  - [Example: Squashing Commits](#example-squashing-commits)
+  - [Splitting commits](#splitting-commits)
 
 ## General Commands
 
@@ -76,11 +75,9 @@ Removes or deletes an empty directory named "directory."
 Executes the command `ls` and saves both its standard output and error output to a file at the specified path.
 13. `tree .`: displays tree structure of current working directory (needs to be installed - see this [tutorial](https://www.geeksforgeeks.org/tree-command-unixlinux/).
 
-## Git Commands
+## Git Basics
 
-### Basics
-
-#### Initializing a repository
+### Initializing a repository
 
 1. `git init`:
 Initializes a new Git repository in the current directory, creating a hidden ".git" folder to manage version control.
@@ -89,13 +86,13 @@ Displays the installed Git version.
 3. `git status`:
 Shows the status of your Git repository, indicating which files have been modified, added, or deleted. The `-s` or `--short`` option provides a more concise output.
 
-#### Example: Initializing a git repository
+### Example: Initializing a git repository
 
 See [Example](./examples/git-init-example.md).
 
-### Staging and Committing Changes
+## Staging and Committing Changes
 
-#### Staging / Restoring Changes
+### Staging / Restoring Changes
 
 1. `git add README.md`:
 Stages the "README.md" file for the next commit, adding it to the index.
@@ -106,23 +103,23 @@ Discards unstaged changes in the file "UNSTAGED_FILE.md" and reverts it to the l
 4. `git rm --cached STAGED_FILE.md`:
 Unstages the changes in the file "STAGED_FILE.md" that were previously added to the index.
 
-#### Commiting Changes
+### Commiting Changes
 
 1. `git commit -m "my first commit"`:
 Commits the staged changes with a descriptive commit message.
 
-#### Logging History
+### Logging History
 
 1. `git log --graph --oneline --all`:
 Displays the commit history of the repository. The --graph option visualizes the commit history as a graph, and other options can format the log output.
 
-#### Example: Staging and Committing Changes
+### Example: Staging and Committing Changes
 
 See [Example](./examples/git-commit-example.md).
 
-### Working with Branches
+## Working with Branches
 
-#### Branching
+### Branching
 
 1. `git branch`:
 Lists all the branches in the Git repository.
@@ -137,12 +134,12 @@ Creates and switches to a new branch named "feat-branch."
 6. `git branch -m original_branch_name new_branch_name` / `git branch --move original_branch_name new_branch_name`:
 Renames a branch from "original_branch_name" to "new_branch_name."
 
-#### Merging Branches
+### Merging Branches
 
 1. `git merge feat-branch`:
 Merges changes from the "feat-branch" into the current branch, with an optional merge message provided using the -m flag.
 
-#### Comparing Changes
+### Comparing Changes
 
 1. `git diff`:
 Shows the difference between the working directory and the last commit.
@@ -153,49 +150,49 @@ Compares two specific commits, identified by their hash values.
 4. `git diff feature_branch master (on feature branch)`:
 Compares the differences between "feature_branch" and "master" branches.
 
-#### Example: Working with Branches
+### Example: Working with Branches
 
 See [Example](./examples/git-branching-example.md).
 
-### Rewriting History
+## Rewriting History
 
-#### Ammending History
+### Ammending History
 
 1. `git commit --amend`
 Adds changes to previous commit (or editting last commit message)
 2. `git commit --amend --no-edit`
 Adds changes to previous commit without editting the last commit message.
 
-#### Editing Commit Messages
+### Editing Commit Messages
 
 `git rebase -i --root`
 Interactive rebase: shows menu for all commits since root.
 
 To reword a specific commit, add rename `pick` to `reword` in front of the commit:
 
-#### Example: Editting a Commit Message
+### Example: Editting a Commit Message
 
 See [Example](./examples/git-edit-message.md).
 
-#### Deleting a commit
+### Deleting a commit
 
 Again, use the `git rebase -i --root` to display all previous commits (as an example), reword `pick` in front of the desired commit to `drop`, save and exit (`esc + :wq`)
 
-#### Reordering commits
+### Reordering commits
 
 From the `git rebase -i --root` menu, reorder the commits (maintain the `pick` prefix).
 
-#### Squashing Commits
+### Squashing Commits
 
 Assuming you have From the `git rebase -i --root` menu, and we want to "squash" 3rd and 2nd commits to 1st commit.
 
 We will change `pick` to `squash` prefix on the 2nd and 3rd commits.
 
-#### Example: Squashing Commits
+### Example: Squashing Commits
 
 See [Example](./examples/git-squash-example.md).
 
-#### Splitting commits
+### Splitting commits
 
 1. Enter the rebase-todo menu with `git rebase -i --root`.
 2. Modify the prefix for the commit you want to split from `pick` to `edit`.

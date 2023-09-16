@@ -78,3 +78,5 @@ nothing to commit (create/copy files and use "git add" to track)
 ```
 
 We can see that Git is initialized, and we are on a branch called main.
+
+Back to [Table of Contents](../README.md#table-of-contents)

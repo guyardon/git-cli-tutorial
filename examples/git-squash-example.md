@@ -91,3 +91,5 @@ Finally `git log --oneline` will verify that the commits have been squashed:
 ```
 
 `git status` will indicate that we are on a clean tree, and `ls` will show that all three files, `a` , `b` and `c` are present!
+
+Back to [Table of Contents](../README.md#table-of-contents)

@@ -98,3 +98,5 @@ Finally, we can see our re-written history with `git log --online` which will ou
 dde96bf added b
 26fe748 added a
 ```
+
+Back to [Table of Contents](../README.md#table-of-contents)
