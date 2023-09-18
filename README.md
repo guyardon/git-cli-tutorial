@@ -6,7 +6,7 @@ Mastering Git and understanding source control workflows is a fundamental skill 
 
 This proficiency proves invaluable when collaborating within a team, but it's equally advantageous for individual developers working on personal projects. Git is often one of those skills that are expected to be picked up along the way, rather than formally tought.
 
-From my perspective, many developers are quite comfortable using graphical user interfaces to work with Git. These GUIs, such the [source control features in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview), enhanced with extensions (I personally enjoy using [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) and [Commit Message Editor](https://marketplace.visualstudio.com/items?itemName=adam-bender.commit-message-editor) extensions), unquestionably make Git more user-friendly. However, it's important to remember that there are still some compelling reasons to explore the power of bare-bones command line.
+From my perspective, many developers are quite comfortable using graphical user interfaces to work with Git. As an example, I personally enjoy using the [source control features in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview), enhanced with the [Git Lens](https://www.gitkraken.com/gitlens) extension, which unquestionably make Git more user-friendly. However, it's important to remember that there are still some compelling reasons to explore the power of bare-bones command line.
 
 Git's Command Line Interface (CLI) is cross-platform, ensuring consistent performance across all your working environments. Through consistent practice, employing the command line can push developers to establish more effective Git workflows. Additionally, delving into Git CLI compels us to grasp basic terminal commands, an indispensable skill for any software developer.
 
@@ -242,14 +242,52 @@ See [Example](./examples/git-split-commits.md).
 
 ### Initial Configuration
 
+1. `git remote add <name> <url>`
+Will add a repository on a remote server as the remote repo for our local repo. Usually, name is set to `origin`.
+2. `git remote rm <name>`
+Remove an the connection to a remote repository.
+3. `git remote -v`
+Will list the remote repository or repositories URL(s).
+4. `git config push.default simple`
+Pushes the current branch to its upstream branch, as long as the local and upstream branch names match.
+5. `git config pull.rebase`
+Print the stategy for pulling. This can be set to true or false (false by default).
+
 ### Cloning Repositories
+
+1. `git clone https://github.com/user-name/repo-name.git`
+Creates a local copy of a repository stored on a remote server (e.g. GitHub, Gitlab, Bitbucket, etc.). On GitHub, the simplest way to clone is via `HTTPS` which requries no additional setup. However, we can clone via `SSH`. The `clone` command creates a local `.git` folder inside the cloned repository, which includes all commits, branches, and metadata. After cloning you should use `git switch` to switch to a desired branch name (the default is the `main` or `master` branch).
+
+2. `git clone https://github.com/user-name/repo-name.git local-repo-name`
+changes the default name of the folder from the repository name to a custom name ()`local-repo-name` here).
 
 ### Forking Repositories
 
+*Forking* is a GitHub feature, which allows us to create your own copy (under your own username) of any public repository on GitHub, and make changes to it.
+
+This allows you to work on open-source projects without the need to add grant addititional permissions to individual collaborators in the respository settings on GitHub.
+
+Usually, if we want to make changes to an open-source project, it is best we first *fork* the repository to our own account (via the GitHub UI) and only then clone it locally. Read more about forking on GitHub [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+
 ### Fetching, Pulling and Pushing
+
+1. `git remote -v`
+List the remote repository connection(s). Useful for knowing where to fetch, pull and push from. The default name is `origin`.
+2. `git fetch`
+Fetch updates your local repository with changes from the remote repository. It *fetches* changes but does not force you to actually merge the changes into your repo. This is the same as `git fetch origin`.
+3. `git fetch <remote>`
+In case there are multiple remote connections to a repository, you can fetch from a specific one.
+4. `git fetch <remote> <branch>`
+Allows you to fetch a specific branch from a specific remote repository.
+5. `git push`
+Pushes local commits to the remote repository. In many cases, you will be prompted for a username and password to the remote repository. Some remote git servers use personal access tokens instead. You can store this password on your machine's credential manager (e.g. Keychain Access on Mac or Credentials Manager on Windows) so that you won't be prompted every time. This is the same as `git push origin`.
+6. `git push --set-upstream <remote> <local-branch>` or `git push -u <remote> <local-branch`
+The standard `git push` command will only work if the current branch has an `upstream` (or `tracking`) branch. When creating a new local branch, you will need to configure its remote `upstream branch`. This only has to be done once for a new branch. The default `<remote>` repository connection is named `origin`.
+7. `git pull`
+This command is a `git fetch` + `git merge` command. It fetches the upstream branches from the remote repository, and then merges the changes of the upstream branch you are on locally.
 
 ### Remote Merges (Pull Requests)
 
-
+Once pushing a local branch to a remote repository, we can merge it on the remote server with another branch (usually this is a `development` branch). The remote merge is called a *Pull Request*, and is done via the remote server web interface. Once the pull request is approved the default reviewers (set on the remote server), the branch can then be merged. Note that while `pull` and `pull request` sound similar, they mean completely different things. Read more about creating pull requests on GitHub [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 Hope this tutorial helped you!
