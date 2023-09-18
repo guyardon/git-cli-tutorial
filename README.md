@@ -259,7 +259,7 @@ Print the stategy for pulling. This can be set to true or false (false by defaul
 Creates a local copy of a repository stored on a remote server (e.g. GitHub, Gitlab, Bitbucket, etc.). On GitHub, the simplest way to clone is via `HTTPS` which requries no additional setup. However, we can clone via `SSH`. The `clone` command creates a local `.git` folder inside the cloned repository, which includes all commits, branches, and metadata. After cloning you should use `git switch` to switch to a desired branch name (the default is the `main` or `master` branch).
 
 2. `git clone https://github.com/user-name/repo-name.git local-repo-name`
-changes the default name of the folder from the repository name to a custom name ()`local-repo-name` here).
+changes the default name of the folder from the repository name to a custom name (`local-repo-name` here).
 
 ### Forking Repositories
 
