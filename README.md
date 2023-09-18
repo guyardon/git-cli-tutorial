@@ -12,11 +12,7 @@ Git's Command Line Interface (CLI) is cross-platform, ensuring consistent perfor
 
 This tutorial assumes you possess a baseline understanding of source control workflows and Git's fundamentals, and serves as both a valuable refresher for experienced Git users and an educational resource for those looking to deepen their Git knowledge.
 
-We'll begin by revisiting essential Linux commands before diving into a comprehensive exploration of various Git commands. These include initializing repositories, staging and committing files, examining revision history, managing branches, merging changes, comparing alterations, and techniques for rewriting Git history. Along the way, I'll provide practical demonstrations to ensure you grasp these concepts thoroughly.
-
-Learning Git and source control workflows is essential for software engineers, data scientists, and practically anybody writing code.
-
-It is incredibly important for anybody working on a team, but also beneficial for individual developers working on personal projects. Git is one of those skills which are usually never tought properly, and it is assumed that you pick up along the way.
+We'll begin by revisiting essential commands before diving into a comprehensive exploration of various Git commands. These include initializing repositories, staging and committing files, examining revision history, managing branches, merging changes, comparing alterations, and techniques for rewriting Git history. Along the way, I'll provide practical demonstrations to ensure you grasp these concepts thoroughly.
 
 ## Table of Contents
 
@@ -37,6 +33,8 @@ It is incredibly important for anybody working on a team, but also beneficial fo
   - [Comparing Changes](#comparing-changes)
   - [Example: Working with Branches](#example-working-with-branches)
 - [Rewriting History](#rewriting-history)
+  - [Resetting Commits](#resetting-commits)
+  - [Reverting Commits](#reverting-commits)
   - [Ammending History](#ammending-history)
   - [Editing Commit Messages](#editing-commit-messages)
   - [Example: Editting a Commit Message](#example-editting-a-commit-message)
@@ -45,6 +43,12 @@ It is incredibly important for anybody working on a team, but also beneficial fo
   - [Squashing Commits](#squashing-commits)
   - [Example: Squashing Commits](#example-squashing-commits)
   - [Splitting commits](#splitting-commits)
+- [Working with Remote Git Servers](#working-with-remote-git-servers)
+  - [Initial Configuration](#initial-configuration)
+  - [Cloning Repositories](#cloning-repositories)
+  - [Forking Repositories](#forking-repositories)
+  - [Fetching, Pulling and Pushing](#fetching-pulling-and-pushing)
+  - [Remote Merges (Pull Requests)](#remote-merges-pull-requests)
 
 ## General Commands
 
@@ -85,6 +89,10 @@ Initializes a new Git repository in the current directory, creating a hidden ".g
 Displays the installed Git version.
 3. `git status`:
 Shows the status of your Git repository, indicating which files have been modified, added, or deleted. The `-s` or `--short`` option provides a more concise output.
+4. `git config --global user.name John Snow`
+Sets the global Git user name. This will be the default signature on commits.
+5. `git config --global user.email john.snow@gmail.com`
+Sets the global Git user email address. This will be the default signature on commits.
 
 ### Example: Initializing a git repository
 
@@ -156,6 +164,34 @@ See [Example](./examples/git-branching-example.md).
 
 ## Rewriting History
 
+### Resetting Commits
+
+Git's `HEAD` keyword always marks your location. We can use `HEAD` to reference previous commits with the `~` operator (or `^` operator when merging commits). For example `HEAD~3` references three commits back from current location, `HEAD~1` (shortformed as `HEAD~`) will reference one commit back.
+
+Git's `reset` command moves `HEAD` and branch to the specified commit. The additional options (`--soft`, `--mixed`, `--hard`) will specify what we want to do 
+
+1. `git reset 1dded2a`
+Will move `HEAD` to the specified commit ID. Changes from `HEAD` will move to the working directory.
+2. `git reset HEAD~`
+Will move `HEAD` one commit back.
+3. `git reset HEAD~2`
+Will move `HEAD` two commits back.
+4. `git reset --soft HEAD~`
+Undoes the commit `HEAD` points to, and moves those changes from the object database to the *index* (staging area).
+5. `git reset --mixed HEAD~` / `git reset HEAD~`
+Undoes the commit `HEAD` points to, and moves those changes from the object database to the *working directory*
+6. `git reset --hard`
+Undoes the commit `HEAD` points to, and *deletes* changes on `HEAD` (**be careful with this - the hard mode is destructive and changes on `HEAD` cannot be restored**)
+
+### Reverting Commits
+
+Reverting commits is similar to *resetting* commits, but differs in that it creates an "anti-commit"
+
+1. `git revert HEAD`
+This will undo the changes done on the current commit, and create a new "anti commit".
+2 `git revert HEAD~`
+Will create an "anti-commit", reverting both the current and previous commits.
+
 ### Ammending History
 
 1. `git commit --amend`
@@ -201,5 +237,19 @@ See [Example](./examples/git-squash-example.md).
 5. Finally `git rebase --continue` to exit the rebase progress. Verify the commit has been split with `git log --oneline`.
 
 See [Example](./examples/git-split-commits.md).
+
+## Working with Remote Git Servers
+
+### Initial Configuration
+
+### Cloning Repositories
+
+### Forking Repositories
+
+### Fetching, Pulling and Pushing
+
+### Remote Merges (Pull Requests)
+
+
 
 Hope this tutorial helped you!

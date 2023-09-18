@@ -65,9 +65,9 @@ which will output the following:
     └── tags
 ```
 
-It is not necessary to understand the internals of the `.git` folder but good to be familiar with it, since this is where all changes will be tracked.
+The .git folder is a hidden directory that Git uses to store all the information and metadata about a Git repository, including project history, commits, configuration files, etc. It is located at the root of the repository and is critical for the functioning of Git.
 
-Finally, we can use `git status` which will output the following:
+To see the status of our current Git repository, can use `git status` which will output the following:
 
 ```text
 On branch main
@@ -78,5 +78,14 @@ nothing to commit (create/copy files and use "git add" to track)
 ```
 
 We can see that Git is initialized, and we are on a branch called main.
+
+We can introduce ourselves to Git for the first time by setting our user name and email, which will appear on commit logs:
+
+```shell
+git config --global user.name Guy Ardon
+git config --global user.email guyardon@gmail.com
+```
+
+We can see all our configurations via the `git config --list` command.
 
 Back to [Table of Contents](../README.md#table-of-contents)
